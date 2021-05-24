@@ -1,11 +1,12 @@
 const mongoose=require('mongoose')
 
 const shortId = require('shortid')
-
+const longId  = require("url-unshort")
 const shortUrlSchema = new mongoose.Schema({
     full: {
         type: String,
-        required: true
+        required: true,
+        default:longId.generate
     },
     short: {
         type: String,

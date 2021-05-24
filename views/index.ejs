@@ -11,7 +11,10 @@
     <form action="/shortUrls" method="POST">
         <label for="fullUrl">Original URL</label>
         <input required placeholder="Url" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
-        <button type ="convert">Shorten</button>
+        <button type ="shorten">Shorten</button>
+        <label for="shortenedUrl">Short URL</label>
+        <input required placeholder="Url" type="url" name="shortenUrl" id="shortenedUrl" class="form-control col mr-2">
+        <button type="convertOriginal">Convert to Original URL</button>
     </form>
 
     <table>
@@ -22,10 +25,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><a href="https://google.ca" >https://google.ca</a></td>
-                <td><a href ="/123456">123456</a></td>
-            </tr>
+            <% shortUrls.forEach(shortUrl => { %>
+                <tr>
+                    <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
+                    <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+                    <td><%= shortUrl.clicks %></td>
+                  </tr>
+            <%})%>
         </tbody>
     </table>
 </body>
